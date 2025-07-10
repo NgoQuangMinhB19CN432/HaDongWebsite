@@ -1,6 +1,6 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\Exception;
 
 // Nếu dùng Composer
 // require '../vendor/autoload.php';
@@ -18,7 +18,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';         // SMTP server
     $mail->SMTPAuth   = true;
     $mail->Username   = 'ngoquangminh1509@gmail.com';     // Tài khoản Gmail gửi đi
-    $mail->Password   = 'prxy kfns dafh vnbm';      // App password từ Gmail (không phải mật khẩu Gmail)
+    $mail->Password   = 'prxy kfns dafh vnbm';      // App password từ Gmail 
     $mail->SMTPSecure = 'tls';
     $mail->Port       = 587;
 
@@ -26,7 +26,7 @@ try {
     $mail->setFrom('ngoquangminh1509@gmail.com', 'Website Contact');
 
     // Gửi đến địa chỉ nhận
-    $mail->addAddress('minhhaihd.ltd@gmail.com');  // Bạn nhận mail tại đây
+    $mail->addAddress('minhhaihd.ltd@gmail.com');  // nhận mail tại đây
 
     // Lấy dữ liệu từ form
     $name    = $_POST['name'] ?? '';
