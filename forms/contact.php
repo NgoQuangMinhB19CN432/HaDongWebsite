@@ -1,41 +1,47 @@
 <?php
-  /**
-  * Requires the "PHP Email Form" library
-  * The "PHP Email Form" library is available only in the pro version of the template
-  * The library should be uploaded to: vendor/php-email-form/php-email-form.php
-  * For more info and help: https://bootstrapmade.com/php-email-form/
-  */
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'minhhaihd.ltd@gmail.com';
+// Nếu dùng Composer
+// require '../vendor/autoload.php';
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+// Nếu không dùng Composer và tải tay:
+require '../assets/vendor/phpmailer/PHPMailer.php';
+require '../assets/vendor/phpmailer/SMTP.php';
+require '../assets/vendor/phpmailer/Exception.php';
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
+$mail = new PHPMailer(true);
 
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  
-  $contact->smtp = array(
-    'host' => 'smtp.gmail.com',
-    'username' => 'ngoquangminh1509@gmail.com',
-    'password' => 'prxy kfns dafh vnbm',
-    'port' => '587'
-  );
- 
+try {
+    // Cấu hình SMTP
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.gmail.com';         // SMTP server
+    $mail->SMTPAuth   = true;
+    $mail->Username   = 'ngoquangminh1509@gmail.com';     // Tài khoản Gmail gửi đi
+    $mail->Password   = 'prxy kfns dafh vnbm';      // App password từ Gmail (không phải mật khẩu Gmail)
+    $mail->SMTPSecure = 'tls';
+    $mail->Port       = 587;
 
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
+    // Gửi mail từ đâu
+    $mail->setFrom('ngoquangminh1509@gmail.com', 'Website Contact');
 
-  echo $contact->send();
+    // Gửi đến địa chỉ nhận
+    $mail->addAddress('minhhaihd.ltd@gmail.com');  // Bạn nhận mail tại đây
+
+    // Lấy dữ liệu từ form
+    $name    = $_POST['name'] ?? '';
+    $email   = $_POST['email'] ?? '';
+    $subject = $_POST['subject'] ?? 'Form liên hệ từ website';
+    $message = $_POST['message'] ?? '';
+
+    // Tiêu đề & nội dung
+    $mail->Subject = $subject;
+    $mail->Body    = "Bạn nhận được tin nhắn từ:\n\nHọ tên: $name\nEmail: $email\n\nNội dung:\n$message";
+
+    // Gửi mail
+    $mail->send();
+    echo 'OK';  // Cho validate.js biết là đã thành công
+} catch (Exception $e) {
+    echo "Lỗi gửi mail: {$mail->ErrorInfo}";
+}
 ?>
