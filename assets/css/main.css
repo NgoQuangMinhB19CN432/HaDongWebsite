@@ -262,6 +262,7 @@ section {
   top: 0;
   left: 0;
   right: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.8), transparent);
 }
 
 .header .logo img {
@@ -1204,8 +1205,14 @@ section {
 }
 
 .about .our-story {
-  padding: 40px;
+  padding: 40px 40px 5px 40px;
   background-color: #f5f6f7;
+}
+
+.about .our-story-bottom {
+  padding: 0 40px 40px 40px;
+  background-color: #f5f6f7;
+  font-style: italic;
 }
 
 @media (min-width: 991px) {
@@ -1883,7 +1890,7 @@ section {
 
 .hero .carousel-item::before {
   content: "";
-  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: rgba(0, 0, 0, 0.7); */
   position: absolute;
   inset: 0;
 }
@@ -1976,7 +1983,7 @@ section {
   background: none;
   font-size: 26px;
   line-height: 0;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.4);
   color: rgba(255, 255, 255, 0.6);
   border-radius: 50px;
   width: 54px;
@@ -2696,7 +2703,7 @@ section {
   left: 0;
   right: 0;
   padding: 40px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
   color: white;
 }
 
@@ -2710,12 +2717,14 @@ section {
   font-size: 28px;
   font-weight: bold;
   text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  color: var(--color-primary);
 }
 
 .title-2 {
   font-size: 20px;
   margin-bottom: 25px;
+  font-style: italic;
 }
 
 .project-info {
@@ -2729,11 +2738,13 @@ section {
 
 .info-label {
   font-weight: bold;
+  color: rgb(212, 212, 212);
   min-width: 100px;
 }
 
 .info-value {
   flex-grow: 1;
+  color: rgb(212, 212, 212);
 }
 
 /* Nút xem dự án */

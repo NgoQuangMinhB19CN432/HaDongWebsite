@@ -1,0 +1,12 @@
+.footer-container .footer-left {
+    margin-left: -30px;
+}
+
+.footer-container .footer-right {
+    margin-right: -30px;
+}
+
+.footer-right-bottom ul li:hover a {
+    color: var(--color-primary) !important;
+    text-decoration: underline;
+}
